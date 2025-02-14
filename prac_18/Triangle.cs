@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Triangle : Figure
+    class Triangle : PointFigure
     {
         private PointFigure point1;
         private PointFigure point2;

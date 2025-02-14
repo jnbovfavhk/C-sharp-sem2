@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Circle : Figure
+    class Circle : PointFigure
     {
         private double radius;
 
