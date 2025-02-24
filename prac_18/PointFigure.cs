@@ -38,8 +38,11 @@ namespace ConsoleApp1
         }
         public PointFigure(String str)
         {
-            this.x = double.Parse(str.Substring(1, str.IndexOf(",")));
-            this.y = double.Parse(str.Substring(str.IndexOf(" ") + 1, str.IndexOf(")")));
+            str = str.Trim('(', ')');
+            String strX = str.Split(' ')[0];
+            String strY = str.Split(' ')[1];
+            this.x = double.Parse(strX.Substring(0, strX.Length - 1));
+            this.y = double.Parse(strY);
         }
 
         // расстояние до центра фигуры

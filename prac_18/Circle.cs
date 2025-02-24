@@ -42,10 +42,5 @@ namespace ConsoleApp1
         {
             return 2 * Math.PI * radius;
         }
-
-        public override string ToString()
-        {
-            return "(" + x + ", " + y + "), radius = " + radius;
-        }
     }
 }

@@ -24,7 +24,7 @@ namespace ConsoleApp1
             figures.Add(new Circle(10, 0, 1));
             figures.Add(new Rectangle(-2, -4, 5, 2));
             figures.Add(new Triangle());
-            figures.Add(new Triangle(0, 0, 0, 2, 2, 0));
+            figures.Add(new Triangle(100, 0, -10, 10, 5, 0));
 
             
             Print(figures);
@@ -36,7 +36,7 @@ namespace ConsoleApp1
             Console.ReadLine();
 
             List<Figure> figures2 = Deserialize();
-            figures2.Add(new Rectangle(4, 6, 5, 2));
+            //figures2.Add(new Rectangle(4, 6, 5, 2));
             figures2.Sort();
             Print(figures2);
         }
@@ -44,6 +44,7 @@ namespace ConsoleApp1
 
         public static void Serialize(List<Figure> figures)
         {
+            // gдготовка строки json для сериализации с конввертацией из FigureConverter
             var jsonString = JsonConvert.SerializeObject(figures, Formatting.Indented, new FigureConverter());
             using (StreamWriter f = new StreamWriter("C:\\Users\\ilyab\\source\\repos\\ConsoleApp1\\prac_18\\data.json"))
             {

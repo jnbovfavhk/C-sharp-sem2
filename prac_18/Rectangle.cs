@@ -11,15 +11,17 @@ namespace ConsoleApp1
         private PointFigure pointRightUp;
         private PointFigure pointLeftDown;
         private PointFigure pointRightDown;
+        private double height;
+        private double width;
 
         public override double Area()
         {
-            return pointLeftUp.distanceTo(pointLeftDown) * pointRightUp.distanceTo(pointLeftUp);
+            return height * width;
         }
 
         public override double Perimeter()
         {
-            return pointLeftUp.distanceTo(pointLeftDown) * 2 + pointRightUp.distanceTo(pointLeftUp) * 2;
+            return (height + width) * 2;
         }
 
         public Rectangle()
@@ -38,7 +40,8 @@ namespace ConsoleApp1
             this.pointLeftUp = new PointFigure(x - width / 2, y + height / 2);
             this.pointRightDown = new PointFigure(x + width / 2, y - height / 2);
             this.pointRightUp = new PointFigure(x + width / 2, y + height / 2);
-
+            this.height = height;
+            this.width = width;
         }
 
         public Rectangle(Rectangle rect)
@@ -53,6 +56,11 @@ namespace ConsoleApp1
         {
             List<PointFigure> listOfPoints = new List<PointFigure>() { pointLeftUp, pointRightUp, pointLeftDown, pointRightDown };
             return listOfPoints;
+        }
+
+        public List<Double> GetSize()
+        {
+            return new List<Double>() { height, width };
         }
 
     }

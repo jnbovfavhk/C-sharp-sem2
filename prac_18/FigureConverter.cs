@@ -7,7 +7,7 @@ namespace ConsoleApp1.prac_18
 {
     public class FigureConverter : Newtonsoft.Json.JsonConverter
     {
-        // 
+        
         public override bool CanConvert(Type typeToConvert)
         {
             return typeof(Figure).IsAssignableFrom(typeToConvert);
@@ -26,15 +26,18 @@ namespace ConsoleApp1.prac_18
 
             if (figure is Circle circle)
             {
-                jsonObject["Radius"] = circle.radius;
+                jsonObject["radius"] = circle.radius;
             }
             else if (figure is Rectangle rectangle)
             {
                 List<PointFigure> listOfPOints = rectangle.GetPoints();
+                List<Double> sizes = rectangle.GetSize();
                 jsonObject["pointLeftUp"] = listOfPOints[0].ToString();
                 jsonObject["pointRightUp"] = listOfPOints[1].ToString();
                 jsonObject["pointLeftDown"] = listOfPOints[2].ToString();
                 jsonObject["pointRightDown"] = listOfPOints[3].ToString();
+                jsonObject["height"] = sizes[0];
+                jsonObject["width"] = sizes[1];
             }
             else if (figure is Triangle triangle)
             {
@@ -58,16 +61,17 @@ namespace ConsoleApp1.prac_18
             switch (type)
             {
                 case "Circle":
-                    figure = new Circle();
+                    figure = new Circle((double)jsonObject["x"], (double)jsonObject["y"], (double)jsonObject["radius"]);
+                    
                     break;
                 case "PointFigure":
-                    figure = new PointFigure();
+                    figure = new PointFigure((double)jsonObject["x"], (double)jsonObject["y"]);
                     break;
                 case "Triangle":
-                    figure = new Triangle();
+                    figure = new Triangle(new PointFigure((String)jsonObject["point1"]), new PointFigure((String)jsonObject["point2"]), new PointFigure((String)jsonObject["point3"]));
                     break;
                 case "Rectangle":
-                    figure = new Rectangle();
+                    figure = new Rectangle((double)jsonObject["x"], (double)jsonObject["y"], (double)jsonObject["height"], (double)jsonObject["width"]);
                     break;
                 default:
                     throw new NotSupportedException($"Тип {type} не поддерживается");
