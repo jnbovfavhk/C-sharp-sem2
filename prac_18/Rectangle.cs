@@ -1,18 +1,17 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ConsoleApp1
 {
     [Serializable]
     class Rectangle : Figure
     {
+        
         private PointFigure pointLeftUp;
         private PointFigure pointRightUp;
         private PointFigure pointLeftDown;
         private PointFigure pointRightDown;
+
         public override double Area()
         {
             return pointLeftUp.distanceTo(pointLeftDown) * pointRightUp.distanceTo(pointLeftUp);
@@ -48,6 +47,12 @@ namespace ConsoleApp1
             this.pointLeftUp = rect.pointLeftUp;
             this.pointRightDown = rect.pointRightDown;
             this.pointRightUp = rect.pointRightUp;
+        }
+
+        public List<PointFigure> GetPoints()
+        {
+            List<PointFigure> listOfPoints = new List<PointFigure>() { pointLeftUp, pointRightUp, pointLeftDown, pointRightDown };
+            return listOfPoints;
         }
 
     }

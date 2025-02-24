@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1
@@ -38,11 +36,21 @@ namespace ConsoleApp1
             this.x = point.GetX();
             this.y = point.GetY();
         }
+        public PointFigure(String str)
+        {
+            this.x = double.Parse(str.Substring(1, str.IndexOf(",")));
+            this.y = double.Parse(str.Substring(str.IndexOf(" ") + 1, str.IndexOf(")")));
+        }
 
         // расстояние до центра фигуры
         public double distanceTo(Figure figure)
         {
             return Math.Sqrt(Math.Pow(x - figure.GetX(), 2) + Math.Pow(y - figure.GetY(), 2));
+        }
+
+        public override string ToString()
+        {
+            return "(" + x + ", " + y + ")";
         }
     }
 }

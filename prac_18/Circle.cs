@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
     [Serializable]
     class Circle : PointFigure
     {
-        private double radius;
+        public double radius;
 
         public Circle()
         {
@@ -45,5 +43,9 @@ namespace ConsoleApp1
             return 2 * Math.PI * radius;
         }
 
+        public override string ToString()
+        {
+            return "(" + x + ", " + y + "), radius = " + radius;
+        }
     }
 }

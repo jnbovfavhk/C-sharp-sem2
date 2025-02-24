@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
     [Serializable]
-    class Figure
+    class Figure : IComparable<Figure>
     {
         // Координаты середины фигуры
-        protected double x;
 
-        protected double y;
+        public double x;
+        public double y;
         
 
 
@@ -55,6 +52,11 @@ namespace ConsoleApp1
         public double GetY()
         {
             return y;
+        }
+        
+        public int CompareTo(Figure figure)
+        {
+            return this.Area().CompareTo(figure.Area());
         }
        
     }

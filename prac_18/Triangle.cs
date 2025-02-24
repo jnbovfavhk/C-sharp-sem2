@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
+
 
 namespace ConsoleApp1
 {
@@ -10,7 +10,9 @@ namespace ConsoleApp1
     class Triangle : Figure
     {
         private PointFigure point1;
+
         private PointFigure point2;
+
         private PointFigure point3;
 
 
@@ -57,6 +59,11 @@ namespace ConsoleApp1
             this.point3 = new PointFigure(x_p3, y_p3);
             this.x = (point1.GetX() + point2.GetX() + point3.GetX()) / 3;
             this.y = (point1.GetY() + point2.GetY() + point3.GetY()) / 3;
+        }
+
+        public List<PointFigure> GetPoints()
+        {
+            return new List<PointFigure>() { point1, point2, point3 };
         }
     }
 }

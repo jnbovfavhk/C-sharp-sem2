@@ -1,13 +1,9 @@
 ﻿
+using ConsoleApp1.prac_18;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
@@ -15,6 +11,8 @@ namespace ConsoleApp1
     {
         public static void Main()
         {
+            //Example.Main1();
+            //return;
             Console.WriteLine("Задание 1\r\n1. Создать абстрактный класс Figure с методами вычисления площади и периметра, " +
                 "а также\r\nметодом, выводящим информацию о фигуре на экран.\r\n2. Создать производные классы: Rectangle (прямоугольник), " +
                 "Circle (круг), Triangle\r\n(треугольник) со своими методами вычисления площади и периметра.\r\n3. " +
@@ -39,21 +37,22 @@ namespace ConsoleApp1
 
             List<Figure> figures2 = Deserialize();
             figures2.Add(new Rectangle(4, 6, 5, 2));
+            figures2.Sort();
             Print(figures2);
         }
 
+
         public static void Serialize(List<Figure> figures)
         {
-            String jsonString = JsonSerializer.Serialize(figures);
-            
-
+            var jsonString = JsonConvert.SerializeObject(figures, Formatting.Indented, new FigureConverter());
             using (StreamWriter f = new StreamWriter("C:\\Users\\ilyab\\source\\repos\\ConsoleApp1\\prac_18\\data.json"))
             {
-               
                 f.Write(jsonString);
             }
             Console.WriteLine("Данные записаны");
         }
+
+
 
         public static List<Figure> Deserialize()
         {
@@ -64,7 +63,6 @@ namespace ConsoleApp1
             {
                 using (StreamWriter f = new StreamWriter("C:\\Users\\ilyab\\source\\repos\\ConsoleApp1\\prac_18\\data.json"))
                 {
-
                 }
             }
 
@@ -76,14 +74,12 @@ namespace ConsoleApp1
                 {
                     try
                     {
-                        figures = JsonSerializer.Deserialize<List<Figure>>(data);
+                        figures = JsonConvert.DeserializeObject<List<Figure>>(data, new FigureConverter());
                         Console.WriteLine("Данные взяты из файла data.json");
-
-                        
                     }
                     catch (NotSupportedException ex)
                     {
-
+                        throw ex;
                     }
                 }
             }
@@ -97,7 +93,6 @@ namespace ConsoleApp1
                 Console.WriteLine(f.ToString());
                 Console.WriteLine("Периметр - " + f.Perimeter());
                 Console.WriteLine("Площадь - " + f.Area());
-
             }
         }
     }
