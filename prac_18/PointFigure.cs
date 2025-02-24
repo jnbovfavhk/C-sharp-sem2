@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
+    [Serializable]
     class PointFigure : Figure
     {
         public override double Area()

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Rectangle : PointFigure
+    [Serializable]
+    class Rectangle : Figure
     {
         private PointFigure pointLeftUp;
         private PointFigure pointRightUp;

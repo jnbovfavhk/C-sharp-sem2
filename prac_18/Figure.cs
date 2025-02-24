@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    abstract class Figure
+    [Serializable]
+    class Figure
     {
         // Координаты середины фигуры
         protected double x;
@@ -15,8 +16,14 @@ namespace ConsoleApp1
         
 
 
-        abstract public double Area();
-        abstract public double Perimeter();
+        public virtual double Area()
+        {
+            return 0;
+        }
+        public virtual double Perimeter()
+        {
+            return 0;
+        }
 
         public override string ToString()
         {
