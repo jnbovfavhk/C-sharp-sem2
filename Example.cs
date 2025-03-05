@@ -18,9 +18,9 @@ namespace ConsoleApp1
             new Square1 { Name = "Square1", SideLength = 4, Area = 4 * 4 }
         };
 
-            Serializer.Serialize(figures);
+            Serializer.Serialize1(figures);
 
-            List<Figure1> list = Serializer.Deserialize();
+            List<Figure1> list = Serializer.Deserialize1();
 
             foreach (Figure1 f1 in list)
             {
@@ -48,7 +48,7 @@ public class Square1 : Figure1
 
 public static class Serializer
 {
-    public static void Serialize(List<Figure1> figures)
+    public static void Serialize1(List<Figure1> figures)
     {
         string jsonString = JsonSerializer.Serialize(figures);
 
@@ -60,7 +60,7 @@ public static class Serializer
     }
 
 
-    public static List<Figure1> Deserialize()
+    public static List<Figure1> Deserialize1()
     {
         string jsonString;
 
